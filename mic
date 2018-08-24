@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $(hostname) = "S-MB-UBUNTU" ]] ; then
+	alsa_out -j "Headphonesj" -d plughw:CARD=Set,DEV=0 &
+	#sleep 2
+	#alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
+fi
+
+~/keyListen.sh
+killall jackd
+
