@@ -1,11 +1,21 @@
 #!/bin/bash
 
 if [[ $(hostname) = "S-MB-UBUNTU" ]] ; then
-	alsa_out -j "Headphonesj" -d plughw:CARD=Set,DEV=0 &
+	alsa_out -j "Headphones" -d plughw:CARD=Set,DEV=0 &
 	#sleep 2
 	#alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
+	~/keyListen.sh
 fi
 
-~/keyListen.sh
+if [[ $(hostname) = "S-D-KUBUNTU" ]] ; then
+	alsa_out -j "Output" -d hw:CARD=PCH,DEV=1 &
+	sleep 5
+	alsa_in -j "USB Mic" -d hw:CARD=MICROPHONE,DEV=0 &
+
+	while [[ "1" == "1" ]] ; do 
+		sleep 1
+	done
+fi
+
 killall jackd
 
