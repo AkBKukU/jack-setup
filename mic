@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [[ $(hostname) = "S-MB-UBUNTU" ]] ; then
+if [[ $(hostname) = "S-MB-KUBUNTU" ]] ; then
 	
-	alsa_out -j "Output" -d hw:CARD=PCH,DEV=1 &
+	alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
 	sleep 3
+	alsa_out -j "Output" -d hw:CARD=PCH,DEV=1 &
 	#alsa_in -j "External In" -d plughw:CARD=Set,DEV=0 &
 	
 	#sleep 2
-	alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
 #	~/keyListen.sh
 fi
 
