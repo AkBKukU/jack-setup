@@ -1,10 +1,14 @@
 #!/bin/bash
 
 if [[ $(hostname) = "S-MB-UBUNTU" ]] ; then
-	alsa_out -j "Headphones" -d plughw:CARD=Set,DEV=0 &
+	
+	alsa_out -j "Output" -d hw:CARD=PCH,DEV=1 &
+	sleep 3
+	#alsa_in -j "External In" -d plughw:CARD=Set,DEV=0 &
+	
 	#sleep 2
-	#alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
-	~/keyListen.sh
+	alsa_in -j "USB Mic" -d plughw:CARD=MICROPHONE,DEV=0 &
+#	~/keyListen.sh
 fi
 
 if [[ $(hostname) = "S-D-KUBUNTU" ]] ; then
@@ -17,5 +21,6 @@ if [[ $(hostname) = "S-D-KUBUNTU" ]] ; then
 	done
 fi
 
-killall jackd
+#a2jmidid -e
+#killall jackd
 
